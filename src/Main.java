@@ -9,7 +9,7 @@ public class Main {
 
         NaiveBayesClassifier naiveBayesClassifier = new NaiveBayesClassifier(args[0], args[1]);
 
-        naiveBayesClassifier.classifieDocument("document.txt");
+        naiveBayesClassifier.classifieDocument("document2.txt");
 
     }
 }

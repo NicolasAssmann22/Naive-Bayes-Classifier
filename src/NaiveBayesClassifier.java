@@ -23,6 +23,7 @@ public class NaiveBayesClassifier {
                 documentBuilder.append(line).append("\n");
             }
             String document = documentBuilder.toString();
+            document = deleteUnclassifiedWords(document);
             double probabilityA = calculateTotalProbability(classDataA, document);
             double probabilityB =  calculateTotalProbability(classDataB, document);
             System.out.println("probability " + classDataA.getFileName() +  ": " + probabilityA +
@@ -30,6 +31,26 @@ public class NaiveBayesClassifier {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public String deleteUnclassifiedWords(String document)
+    {
+
+        Map<String, Integer> wordListA =  classDataA.getWordCount();
+        Map<String, Integer> wordListB =  classDataB.getWordCount();
+        String[] words = document.split("\\s+");
+
+        StringJoiner sj = new StringJoiner(" ");
+
+        for (String word : words) {
+            if (wordListA.containsKey(word.toLowerCase()) || wordListB.containsKey(word.toLowerCase()) ) {
+                sj.add(word);
+            }
+        }
+        String result = sj.toString();
+        System.out.println("Gültige Wörter: " + result);
+
+        return result;
     }
 
     private ClassData train(String fileName)
@@ -109,7 +130,7 @@ class ClassData
         if (wordCount.containsKey(word)) {
             return ((double) wordCount.get(word) + 1) / (trainingDocumentCounter + 2);
         } else {
-            return 1;
+            return (double) 1 / (trainingDocumentCounter + 2);
         }
     }
 
@@ -119,5 +140,9 @@ class ClassData
 
     public int getTrainingDocumentCounter() {
         return trainingDocumentCounter;
+    }
+
+    public Map<String, Integer> getWordCount() {
+        return wordCount;
     }
 }
