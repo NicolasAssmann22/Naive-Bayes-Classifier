@@ -78,8 +78,5 @@ probability pos: 0.0024000000000000007
 probability for class neg is higher
 ```
 
-## Dokumentation der Klassen und Methoden
-siehe
-[Link zur Dokumentation](./src/doc/allclasses-index.html) 
 
-Die Datei muss mit einem Browser geöffnet werden.
+
