@@ -1,15 +1,15 @@
 public class Main {
     public static void main(String[] args)
     {
-        if(args.length != 2)
+        if(args.length != 1)
         {
-            System.out.println("usage: <File class A> <File class B>" );
+            System.out.println("usage: <Filename of the file for classification>" );
             return;
         }
 
-        NaiveBayesClassifier naiveBayesClassifier = new NaiveBayesClassifier(args[0], args[1]);
+        NaiveBayesClassifier naiveBayesClassifier = new NaiveBayesClassifier();
 
-        naiveBayesClassifier.classifieDocument("document2.txt");
+        naiveBayesClassifier.classifieDocument(args[0]);
 
     }
 }
